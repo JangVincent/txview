@@ -1,6 +1,6 @@
 # txview
 
-Txview is a cli-based tool for viewing transactions on the ethereum compatible blockchains using infura.
+Txview is a cli-based tool for viewing transactions on the ethereum compatible blockchains using [Infura](https://infura.io/).
 
 ## Installation
 
@@ -27,5 +27,15 @@ your_infura_api_key
 
 4. Run txview
 ```bash
+# txview [network] [tx-hash]
 txview eth-goerli 0x-tx-hash
-``
+```
+
+## Support chain
+```bash
+txview --help // You can find support chain
+```
+
+
+## Disclaimer
+Infura Rate Limit : [Infura](https://www.infura.io/pricing)
