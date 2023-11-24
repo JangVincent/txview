@@ -10,7 +10,7 @@ use std::io::prelude::*;
 #[command(name = "txview")]
 #[command(version = "0.1.0")]
 #[command(author = "Phantola")]
-#[command(about = "A simple CLI tool to view transaction details")]
+#[command(about = "txv is simple CLI tool to view transaction details\n\nIf you want to use this tool for ethereum compatible chain (except oasys),\nyou should have infura api key.\nYou can get it from <https://infura.io/>")]
 struct Cli {
     /// Select the chain to search
     #[arg(value_enum)]
@@ -37,7 +37,7 @@ enum SupportChain {
     /// Linea test-net
     LineaGoerli,
 
-    /// Oasis sandverse test-net
+    /// Oasys sandverse test-net
     OasSandverse,
 }
 
