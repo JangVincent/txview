@@ -65,8 +65,8 @@ async fn main() -> Result<(), Error> {
     let args = Cli::parse();
 
     println!("===========================================================================");
-    println!("Search Transaction Information\n");
-    println!("CHAIN :  {:?}\nTxHash : {}", args.chain_name, args.tx_hash);
+    println!("Requested Transaction Information\n");
+    println!("Chain  : {:?}\nTxHash : {}", args.chain_name, args.tx_hash);
     println!("===========================================================================");
 
     
@@ -228,7 +228,6 @@ async fn get_transaction_info_infura(url : &String, tx_hash : &str) -> Result<St
 fn print_transaction_info_infura(response : RpcResponse, raw_response : String) {
 
     println!("\n");
-    println!("============================ Response Details  ============================");
     println!("===========================  Block Information  ===========================");
 
     let block_hash = &response.result.blockHash[..];
@@ -243,7 +242,15 @@ fn print_transaction_info_infura(response : RpcResponse, raw_response : String) 
     }
 
     println!();
-    println!("===========================  Transaction Information  ===========================");
+    println!("========================  Transaction Information  ========================");
+
+    let status = &response.result.status[..];
+    if status == "0x1" {
+        println!("Status : Success ({})", status);
+    } else {
+        println!("Status : Fail ({})", status);
+    }
+
 
     let transaction_hash = &response.result.transactionHash[..];
     println!("Transaction hash : {:?}", transaction_hash.replace("\"", ""));
@@ -282,7 +289,7 @@ fn print_transaction_info_infura(response : RpcResponse, raw_response : String) 
     }
 
     println!();
-    println!("===========================  Log Information  ===========================\n");
+    println!("============================  Log Information  ============================\n");
 
     let mut log_index = 0;
     for log in response.result.logs {
@@ -310,7 +317,7 @@ fn print_transaction_info_infura(response : RpcResponse, raw_response : String) 
     println!("logsBloom : {:?}", &response.result.logsBloom[..]);
 
     println!();
-    println!("===========================  Raw Response  ===========================");
+    println!("==============================  Raw Response  ==============================");
     println!("{:?}", raw_response); 
 }
 
@@ -362,14 +369,20 @@ async fn get_transaction_info_oasys(url : &String, tx_hash : &str) -> Result<Str
 fn print_transaction_info_oasys(response : OasysRpcResponse, raw_response : String) {
     
         println!("\n");
-        println!("============================ Response Details  ============================");
         println!("===========================  Block Information  ===========================");
     
         let block_number = &response.result.blockNumber[..];
         println!("Block Number : {:?}", block_number);
     
         println!();
-        println!("===========================  Transaction Information  ===========================");
+        println!("========================  Transaction Information  ========================");
+
+        let status = &response.result.success;
+        if status == &true {
+            println!("Status : Success ({})", status);
+        } else {
+            println!("Status : Fail ({})", status);
+        }
     
         let transaction_hash = &response.result.hash[..];
         println!("Transaction hash : {:?}", transaction_hash.replace("\"", ""));
@@ -413,7 +426,7 @@ fn print_transaction_info_oasys(response : OasysRpcResponse, raw_response : Stri
         } 
     
         println!();
-        println!("===========================  Log Information  ===========================\n");
+        println!("============================  Log Information  ============================\n");
         for index in 0..response.result.logs.len() {
             println!("Log {}", index);
             let log = &response.result.logs[index];
@@ -433,6 +446,6 @@ fn print_transaction_info_oasys(response : OasysRpcResponse, raw_response : Stri
         } 
 
         println!();
-        println!("===========================  Raw Response  ===========================");
+        println!("==============================  Raw Response  ==============================");
         println!("{:?}", raw_response);
 }
