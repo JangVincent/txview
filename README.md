@@ -7,7 +7,7 @@ Txview is a cli-based tool for viewing transactions on the ethereum compatible b
 ## Installation
 
 ```bash
-brew tap phantola/tap
+brew tap VincentJang/tap
 brew install txview
 ```
 
