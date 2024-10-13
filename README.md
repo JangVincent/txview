@@ -1,6 +1,6 @@
 # txview
 
-Txview is a cli-based tool for viewing transactions on the ethereum compatible blockchains using [Infura](https://infura.io/).
+Txview is a cli-based tool for viewing transactions on the ethereum compatible blockchains using [Infura](https://infura.io/)
 
 ### Current Version : 0.1.1
 
