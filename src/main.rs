@@ -9,8 +9,8 @@ use std::io::prelude::*;
 #[derive(Parser)]
 #[command(name = "txview")]
 #[command(version = "0.1.0")]
-#[command(author = "Phantola")]
-#[command(about = "txv is simple CLI tool to view transaction details\n\n
+#[command(author = "VincentJang")]
+#[command(about = "txview is simple CLI tool to view transaction details\n\n
 If you want to use this tool for ethereum compatible chain (except oasys),\n
 you should have infura api key, and save a key in $HOME/.config/txview/config (file)\n
 You can get it from <https://infura.io/>")]
